@@ -2,3 +2,5 @@
 Debug/
 ipch/
 ExperimentImg/Debug
+ExperimentImg/x64
+ExperimentImg.VC.db
