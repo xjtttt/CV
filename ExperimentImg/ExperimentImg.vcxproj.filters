@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="OpenCL">
-      <UniqueIdentifier>{b1e86141-4454-4806-b942-ba2fc8a0c9f2}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -98,15 +95,6 @@
   <ItemGroup>
     <None Include="res\ExperimentImg.rc2">
       <Filter>资源文件</Filter>
-    </None>
-    <None Include="medianFilter.cl">
-      <Filter>OpenCL</Filter>
-    </None>
-    <None Include="rotation.cl">
-      <Filter>OpenCL</Filter>
-    </None>
-    <None Include="FT.cl">
-      <Filter>OpenCL</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
