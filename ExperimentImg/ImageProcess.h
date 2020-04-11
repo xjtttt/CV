@@ -19,8 +19,15 @@
 using namespace cv;
 using namespace std;
 
+typedef struct {
+	Point2f left_top;
+	Point2f left_bottom;
+	Point2f right_top;
+	Point2f right_bottom;
+}CORNERS;
+
 namespace ImageProcess {
 	void MatToCImage(const Mat, CImage*);
 	void CImageToMat(const CImage*, Mat&);
-
+	void stitch(string, string, CImage*);
 };

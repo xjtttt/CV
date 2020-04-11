@@ -1,4 +1,4 @@
-// ExperimentImgDlg.cpp : ÊµÏÖÎÄ¼ş
+// ExperimentImgDlg.cpp : å®ç°æ–‡ä»¶
 //
 
 #include "stdafx.h"
@@ -18,32 +18,28 @@
 #endif
 
 
-// ÓÃÓÚÓ¦ÓÃ³ÌĞò¡°¹ØÓÚ¡±²Ëµ¥ÏîµÄ CAboutDlg ¶Ô»°¿ò
+// ç”¨äºåº”ç”¨ç¨‹åºâ€œå…³äºâ€èœå•é¡¹çš„ CAboutDlg å¯¹è¯æ¡†
 
-class CAboutDlg : public CDialogEx
-{
+class CAboutDlg : public CDialogEx {
 public:
 	CAboutDlg();
 
-// ¶Ô»°¿òÊı¾İ
+	// å¯¹è¯æ¡†æ•°æ®
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_ABOUTBOX };
 #endif
 
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§³Ö
+protected:
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV æ”¯æŒ
 
-// ÊµÏÖ
+// å®ç°
 protected:
 	DECLARE_MESSAGE_MAP()
 };
 
-CAboutDlg::CAboutDlg() : CDialogEx(IDD_ABOUTBOX)
-{
-}
+CAboutDlg::CAboutDlg() : CDialogEx(IDD_ABOUTBOX) {}
 
-void CAboutDlg::DoDataExchange(CDataExchange* pDX)
-{
+void CAboutDlg::DoDataExchange(CDataExchange* pDX) {
 	CDialogEx::DoDataExchange(pDX);
 }
 
@@ -51,24 +47,22 @@ BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// CExperimentImgDlg ¶Ô»°¿ò
+// CExperimentImgDlg å¯¹è¯æ¡†
 
 
 
 CExperimentImgDlg::CExperimentImgDlg(CWnd* pParent /*=NULL*/)
-	: CDialogEx(IDD_EXPERIMENTIMG_DIALOG, pParent)
-{
+	: CDialogEx(IDD_EXPERIMENTIMG_DIALOG, pParent) {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 
-	//¼ÓÔØ¶Ô»°¿òµÄÊ±ºò³õÊ¼»¯
+	//åŠ è½½å¯¹è¯æ¡†çš„æ—¶å€™åˆå§‹åŒ–
 	m_pImgSrc = NULL;
 	m_pImgSrc2 = NULL;
 	m_pImgResult = NULL;
 	srand(time(0));
 }
 
-void CExperimentImgDlg::DoDataExchange(CDataExchange* pDX)
-{
+void CExperimentImgDlg::DoDataExchange(CDataExchange* pDX) {
 	CDialogEx::DoDataExchange(pDX);
 	//	DDX_Control(pDX, IDC_EDIT_INFO, mEditInfo);
 	DDX_Control(pDX, IDC_PICTURE, mPictureControl);
@@ -83,45 +77,44 @@ BEGIN_MESSAGE_MAP(CExperimentImgDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_BUTTON_OPEN, &CExperimentImgDlg::OnBnClickedButtonOpen)
-//	ON_EN_CHANGE(IDC_EDIT1, &CExperimentImgDlg::OnEnChangeEdit1)
-//	ON_EN_CHANGE(IDC_EDIT_INFO, &CExperimentImgDlg::OnEnChangeEditInfo)
-ON_BN_CLICKED(IDC_BUTTON_PROCESS, &CExperimentImgDlg::OnBnClickedButtonProcess)
+	//	ON_EN_CHANGE(IDC_EDIT1, &CExperimentImgDlg::OnEnChangeEdit1)
+	//	ON_EN_CHANGE(IDC_EDIT_INFO, &CExperimentImgDlg::OnEnChangeEditInfo)
+	ON_BN_CLICKED(IDC_BUTTON_PROCESS, &CExperimentImgDlg::OnBnClickedButtonProcess)
 
-/*ON_MESSAGE(, &CExperimentImgDlg::OnVerify_FERNSMsgReceived)
-ON_MESSAGE(, &CExperimentImgDlg::OnSIFTmappingMsgReceived)
-ON_MESSAGE(, &CExperimentImgDlg::OnSURFmappingMsgReceived)
-ON_MESSAGE(, &CExperimentImgDlg::OnstitchingMsgReceived)
-ON_MESSAGE(, &CExperimentImgDlg::OndetectingMsgReceived)*/
+	/*ON_MESSAGE(, &CExperimentImgDlg::OnVerify_FERNSMsgReceived)
+	ON_MESSAGE(, &CExperimentImgDlg::OnSIFTmappingMsgReceived)
+	ON_MESSAGE(, &CExperimentImgDlg::OnSURFmappingMsgReceived)
+	ON_MESSAGE(, &CExperimentImgDlg::OnstitchingMsgReceived)
+	ON_MESSAGE(, &CExperimentImgDlg::OndetectingMsgReceived)*/
 
 
-ON_NOTIFY(TCN_SELCHANGE, IDC_TAB, &CExperimentImgDlg::OnTcnSelchangeTab)
-ON_BN_CLICKED(IDC_BUTTON1, &CExperimentImgDlg::OnBnClickedButton1)
-ON_STN_CLICKED(IDC_PICTURE2, &CExperimentImgDlg::OnStnClickedPicture2)
-ON_STN_CLICKED(IDC_PICTURE, &CExperimentImgDlg::OnStnClickedPicture)
-ON_STN_CLICKED(IDC_PICTURE3, &CExperimentImgDlg::OnStnClickedPicture3)
-ON_BN_CLICKED(IDC_BUTTON2, &CExperimentImgDlg::OnBnClickedButton2)
+	ON_NOTIFY(TCN_SELCHANGE, IDC_TAB, &CExperimentImgDlg::OnTcnSelchangeTab)
+	ON_BN_CLICKED(IDC_BUTTON1, &CExperimentImgDlg::OnBnClickedButton1)
+	ON_STN_CLICKED(IDC_PICTURE2, &CExperimentImgDlg::OnStnClickedPicture2)
+	ON_STN_CLICKED(IDC_PICTURE, &CExperimentImgDlg::OnStnClickedPicture)
+	ON_STN_CLICKED(IDC_PICTURE3, &CExperimentImgDlg::OnStnClickedPicture3)
+	ON_BN_CLICKED(IDC_BUTTON2, &CExperimentImgDlg::OnBnClickedButton2)
 END_MESSAGE_MAP()
 
 
-// CExperimentImgDlg ÏûÏ¢´¦Àí³ÌĞò
+// CExperimentImgDlg æ¶ˆæ¯å¤„ç†ç¨‹åº
 
-BOOL CExperimentImgDlg::OnInitDialog()
-{
+BOOL CExperimentImgDlg::OnInitDialog() {
 	CDialogEx::OnInitDialog();
-	// ÎªTab¿Ø¼ş²åÈë±êÇ©
-	tab.InsertItem(0, _T("ÑéÖ¤ FERNS"));
-	tab.InsertItem(1, _T("µã¶ÔÓ³Éä"));
-	tab.InsertItem(2, _T("Í¼ÏñÆ´½Ó"));
-	tab.InsertItem(3, _T("Ä¿±ê¼ì²â"));
-	tab.InsertItem(4, _T("ÊÓÆµµÄÊµÊ±ÌØÕ÷¼ì²â"));
-	// ´´½¨×Ó¶Ô»°¿ò
+	// ä¸ºTabæ§ä»¶æ’å…¥æ ‡ç­¾
+	tab.InsertItem(0, _T("éªŒè¯ FERNS"));
+	tab.InsertItem(1, _T("ç‚¹å¯¹æ˜ å°„"));
+	tab.InsertItem(2, _T("å›¾åƒæ‹¼æ¥"));
+	tab.InsertItem(3, _T("ç›®æ ‡æ£€æµ‹"));
+	tab.InsertItem(4, _T("è§†é¢‘çš„å®æ—¶ç‰¹å¾æ£€æµ‹"));
+	// åˆ›å»ºå­å¯¹è¯æ¡†
 	mtab1.Create(IDD_DIALOG1, &tab);
 	mtab2.Create(IDD_DIALOG2, &tab);
 	mtab3.Create(IDD_DIALOG3, &tab);
 	mtab4.Create(IDD_DIALOG4, &tab);
 	mtab5.Create(IDD_DIALOG5, &tab);
 
-	// µ÷Õû×Ó¶Ô»°¿ò´óĞ¡¼°Î»ÖÃ
+	// è°ƒæ•´å­å¯¹è¯æ¡†å¤§å°åŠä½ç½®
 	CRect rc;
 	tab.GetClientRect(&rc);
 	CRect rcTabItem;
@@ -136,72 +129,65 @@ BOOL CExperimentImgDlg::OnInitDialog()
 	mtab4.MoveWindow(&rc);
 	mtab5.MoveWindow(&rc);
 
-	// Ä¬ÈÏ±êÇ©Ñ¡ÖĞ
+	// é»˜è®¤æ ‡ç­¾é€‰ä¸­
 	mtab1.ShowWindow(SW_SHOW);
 	tab.SetCurFocus(0);
 
-	// ½«¡°¹ØÓÚ...¡±²Ëµ¥ÏîÌí¼Óµ½ÏµÍ³²Ëµ¥ÖĞ¡£
+	// å°†â€œå…³äº...â€èœå•é¡¹æ·»åŠ åˆ°ç³»ç»Ÿèœå•ä¸­ã€‚
 
-	// IDM_ABOUTBOX ±ØĞëÔÚÏµÍ³ÃüÁî·¶Î§ÄÚ¡£
+	// IDM_ABOUTBOX å¿…é¡»åœ¨ç³»ç»Ÿå‘½ä»¤èŒƒå›´å†…ã€‚
 	ASSERT((IDM_ABOUTBOX & 0xFFF0) == IDM_ABOUTBOX);
 	ASSERT(IDM_ABOUTBOX < 0xF000);
-	
+
 	CMenu* pSysMenu = GetSystemMenu(FALSE);
-	if (pSysMenu != NULL)
-	{
+	if (pSysMenu != NULL) {
 		BOOL bNameValid;
 		CString strAboutMenu;
 		bNameValid = strAboutMenu.LoadString(IDS_ABOUTBOX);
 		ASSERT(bNameValid);
-		if (!strAboutMenu.IsEmpty())
-		{
+		if (!strAboutMenu.IsEmpty()) {
 			pSysMenu->AppendMenu(MF_SEPARATOR);
 			pSysMenu->AppendMenu(MF_STRING, IDM_ABOUTBOX, strAboutMenu);
 		}
 	}
 
-	// ÉèÖÃ´Ë¶Ô»°¿òµÄÍ¼±ê¡£  µ±Ó¦ÓÃ³ÌĞòÖ÷´°¿Ú²»ÊÇ¶Ô»°¿òÊ±£¬¿ò¼Ü½«×Ô¶¯
-	//  Ö´ĞĞ´Ë²Ù×÷
-	SetIcon(m_hIcon, TRUE);			// ÉèÖÃ´óÍ¼±ê
-	SetIcon(m_hIcon, FALSE);		// ÉèÖÃĞ¡Í¼±ê
+	// è®¾ç½®æ­¤å¯¹è¯æ¡†çš„å›¾æ ‡ã€‚  å½“åº”ç”¨ç¨‹åºä¸»çª—å£ä¸æ˜¯å¯¹è¯æ¡†æ—¶ï¼Œæ¡†æ¶å°†è‡ªåŠ¨
+	//  æ‰§è¡Œæ­¤æ“ä½œ
+	SetIcon(m_hIcon, TRUE);			// è®¾ç½®å¤§å›¾æ ‡
+	SetIcon(m_hIcon, FALSE);		// è®¾ç½®å°å›¾æ ‡
 
-	// TODO: ÔÚ´ËÌí¼Ó¶îÍâµÄ³õÊ¼»¯´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ é¢å¤–çš„åˆå§‹åŒ–ä»£ç 
 //	mEditInfo.SetWindowTextW(CString("File Path"));
 
 
 
 	AfxBeginThread((AFX_THREADPROC)&CExperimentImgDlg::Update, this);
 
-	ShowWindow(SW_MAXIMIZE);//¶Ô»°¿òÄ¬ÈÏ×î´ó»¯µ¯³ö
-	return TRUE;  // ³ı·Ç½«½¹µãÉèÖÃµ½¿Ø¼ş£¬·ñÔò·µ»Ø TRUE
+	ShowWindow(SW_MAXIMIZE);//å¯¹è¯æ¡†é»˜è®¤æœ€å¤§åŒ–å¼¹å‡º
+	return TRUE;  // é™¤éå°†ç„¦ç‚¹è®¾ç½®åˆ°æ§ä»¶ï¼Œå¦åˆ™è¿”å› TRUE
 }
 
-void CExperimentImgDlg::OnSysCommand(UINT nID, LPARAM lParam)
-{
-	if ((nID & 0xFFF0) == IDM_ABOUTBOX)
-	{
+void CExperimentImgDlg::OnSysCommand(UINT nID, LPARAM lParam) {
+	if ((nID & 0xFFF0) == IDM_ABOUTBOX) {
 		CAboutDlg dlgAbout;
 		dlgAbout.DoModal();
 	}
-	else
-	{
+	else {
 		CDialogEx::OnSysCommand(nID, lParam);
 	}
 }
 
-// Èç¹ûÏò¶Ô»°¿òÌí¼Ó×îĞ¡»¯°´Å¥£¬ÔòĞèÒªÏÂÃæµÄ´úÂë
-//  À´»æÖÆ¸ÃÍ¼±ê¡£  ¶ÔÓÚÊ¹ÓÃÎÄµµ/ÊÓÍ¼Ä£ĞÍµÄ MFC Ó¦ÓÃ³ÌĞò£¬
-//  Õâ½«ÓÉ¿ò¼Ü×Ô¶¯Íê³É¡£
+// å¦‚æœå‘å¯¹è¯æ¡†æ·»åŠ æœ€å°åŒ–æŒ‰é’®ï¼Œåˆ™éœ€è¦ä¸‹é¢çš„ä»£ç 
+//  æ¥ç»˜åˆ¶è¯¥å›¾æ ‡ã€‚  å¯¹äºä½¿ç”¨æ–‡æ¡£/è§†å›¾æ¨¡å‹çš„ MFC åº”ç”¨ç¨‹åºï¼Œ
+//  è¿™å°†ç”±æ¡†æ¶è‡ªåŠ¨å®Œæˆã€‚
 
-void CExperimentImgDlg::OnPaint()
-{
-	if (IsIconic())
-	{
-		CPaintDC dc(this); // ÓÃÓÚ»æÖÆµÄÉè±¸ÉÏÏÂÎÄ
+void CExperimentImgDlg::OnPaint() {
+	if (IsIconic()) {
+		CPaintDC dc(this); // ç”¨äºç»˜åˆ¶çš„è®¾å¤‡ä¸Šä¸‹æ–‡
 
 		SendMessage(WM_ICONERASEBKGND, reinterpret_cast<WPARAM>(dc.GetSafeHdc()), 0);
 
-		// Ê¹Í¼±êÔÚ¹¤×÷Çø¾ØĞÎÖĞ¾ÓÖĞ
+		// ä½¿å›¾æ ‡åœ¨å·¥ä½œåŒºçŸ©å½¢ä¸­å±…ä¸­
 		int cxIcon = GetSystemMetrics(SM_CXICON);
 		int cyIcon = GetSystemMetrics(SM_CYICON);
 		CRect rect;
@@ -209,14 +195,12 @@ void CExperimentImgDlg::OnPaint()
 		int x = (rect.Width() - cxIcon + 1) / 2;
 		int y = (rect.Height() - cyIcon + 1) / 2;
 
-		// »æÖÆÍ¼±ê
+		// ç»˜åˆ¶å›¾æ ‡
 		dc.DrawIcon(x, y, m_hIcon);
 	}
-	else
-	{
+	else {
 		CDialogEx::OnPaint();
-		if (m_pImgSrc != NULL)
-		{
+		if (m_pImgSrc != NULL) {
 			int height;
 			int width;
 			CRect rect;
@@ -225,23 +209,21 @@ void CExperimentImgDlg::OnPaint()
 			width = m_pImgSrc->GetWidth();
 
 			mPictureControl.GetClientRect(&rect);
-			CDC *pDC = mPictureControl.GetDC();
+			CDC* pDC = mPictureControl.GetDC();
 
 			SetStretchBltMode(pDC->m_hDC, STRETCH_HALFTONE);
 
-			if (width <= rect.Width() && height <= rect.Height())
-			{
+			if (width <= rect.Width() && height <= rect.Height()) {
 				rect1 = CRect(rect.TopLeft(), CSize(width, height));
-				
+
 				m_pImgSrc->StretchBlt(pDC->m_hDC, rect1, SRCCOPY);
 			}
-			else
-			{
+			else {
 				float xScale = (float)rect.Width() / (float)width;
 				float yScale = (float)rect.Height() / (float)height;
 				float ScaleIndex = (xScale <= yScale ? xScale : yScale);
-				rect1 = CRect(rect.TopLeft(), CSize((int)width*ScaleIndex*0.98, (int)height*ScaleIndex*0.98));
-				//½«picture controlµ÷Õûµ½Í¼ÏñËõ·ÅºóµÄ´óĞ¡
+				rect1 = CRect(rect.TopLeft(), CSize((int)width * ScaleIndex * 0.98, (int)height * ScaleIndex * 0.98));
+				//å°†picture controlè°ƒæ•´åˆ°å›¾åƒç¼©æ”¾åçš„å¤§å°
 //				CWnd *pWnd;
 //				pWnd = GetDlgItem(IDC_PICTURE);
 //				pWnd->MoveWindow(CRect((int)rect.top, (int)rect.left, (int)width*ScaleIndex, (int)height*ScaleIndex));
@@ -251,8 +233,7 @@ void CExperimentImgDlg::OnPaint()
 			ReleaseDC(pDC);
 
 		}
-		if (m_pImgSrc2 != NULL)
-		{
+		if (m_pImgSrc2 != NULL) {
 			int height;
 			int width;
 			CRect rect;
@@ -261,23 +242,21 @@ void CExperimentImgDlg::OnPaint()
 			width = m_pImgSrc2->GetWidth();
 
 			mPictureControl2.GetClientRect(&rect);
-			CDC *pDC = mPictureControl2.GetDC();
+			CDC* pDC = mPictureControl2.GetDC();
 
 			SetStretchBltMode(pDC->m_hDC, STRETCH_HALFTONE);
 
-			if (width <= rect.Width() && height <= rect.Height())
-			{
+			if (width <= rect.Width() && height <= rect.Height()) {
 				rect1 = CRect(rect.TopLeft(), CSize(width, height));
 
 				m_pImgSrc2->StretchBlt(pDC->m_hDC, rect1, SRCCOPY);
 			}
-			else
-			{
+			else {
 				float xScale = (float)rect.Width() / (float)width;
 				float yScale = (float)rect.Height() / (float)height;
 				float ScaleIndex = (xScale <= yScale ? xScale : yScale);
-				rect1 = CRect(rect.TopLeft(), CSize((int)width*ScaleIndex*0.98, (int)height*ScaleIndex*0.98));
-				//½«picture controlµ÷Õûµ½Í¼ÏñËõ·ÅºóµÄ´óĞ¡
+				rect1 = CRect(rect.TopLeft(), CSize((int)width * ScaleIndex * 0.98, (int)height * ScaleIndex * 0.98));
+				//å°†picture controlè°ƒæ•´åˆ°å›¾åƒç¼©æ”¾åçš„å¤§å°
 //				CWnd *pWnd;
 //				pWnd = GetDlgItem(IDC_PICTURE);
 //				pWnd->MoveWindow(CRect((int)rect.top, (int)rect.left, (int)width*ScaleIndex, (int)height*ScaleIndex));
@@ -287,8 +266,7 @@ void CExperimentImgDlg::OnPaint()
 			ReleaseDC(pDC);
 
 		}
-		if (m_pImgResult != NULL)
-		{
+		if (m_pImgResult != NULL) {
 			int height;
 			int width;
 			CRect rect;
@@ -297,25 +275,23 @@ void CExperimentImgDlg::OnPaint()
 			width = m_pImgResult->GetWidth();
 
 			mResult.GetClientRect(&rect);
-			CDC *pDC = mResult.GetDC();
+			CDC* pDC = mResult.GetDC();
 
 			SetStretchBltMode(pDC->m_hDC, STRETCH_HALFTONE);
 
-			if (width <= rect.Width() && height <= rect.Height())
-			{
+			if (width <= rect.Width() && height <= rect.Height()) {
 				rect1 = CRect(rect.TopLeft(), CSize(width, height));
 
 				m_pImgResult->StretchBlt(pDC->m_hDC, rect1, SRCCOPY);
 			}
-			else
-			{
+			else {
 				float xScale = (float)rect.Width() / (float)width;
 				float yScale = (float)rect.Height() / (float)height;
 				float ScaleIndex = (xScale <= yScale ? xScale : yScale);
-				rect1 = CRect(rect.TopLeft(), CSize((int)width*ScaleIndex*0.98, (int)height*ScaleIndex*0.98));
+				rect1 = CRect(rect.TopLeft(), CSize((int)width * ScaleIndex * 0.98, (int)height * ScaleIndex * 0.98));
 
 				m_pImgResult->StretchBlt(pDC->m_hDC, rect1, SRCCOPY);
-			
+
 			}
 			ReleaseDC(pDC);
 
@@ -323,50 +299,43 @@ void CExperimentImgDlg::OnPaint()
 	}
 }
 
-//µ±ÓÃ»§ÍÏ¶¯×îĞ¡»¯´°¿ÚÊ±ÏµÍ³µ÷ÓÃ´Ëº¯ÊıÈ¡µÃ¹â±ê
-//ÏÔÊ¾¡£
-HCURSOR CExperimentImgDlg::OnQueryDragIcon()
-{
+//å½“ç”¨æˆ·æ‹–åŠ¨æœ€å°åŒ–çª—å£æ—¶ç³»ç»Ÿè°ƒç”¨æ­¤å‡½æ•°å–å¾—å…‰æ ‡
+//æ˜¾ç¤ºã€‚
+HCURSOR CExperimentImgDlg::OnQueryDragIcon() {
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
-UINT CExperimentImgDlg::Update(void* p)
-{
-	while (1)
-	{
+UINT CExperimentImgDlg::Update(void* p) {
+	while (1) {
 		Sleep(200);
 		CExperimentImgDlg* dlg = (CExperimentImgDlg*)p;
-		if (dlg->m_pImgSrc != NULL)
-		{
+		if (dlg->m_pImgSrc != NULL) {
 			int height;
 			int width;
 			CRect rect;
 			CRect rect1;
 			height = dlg->m_pImgSrc->GetHeight();
 			width = dlg->m_pImgSrc->GetWidth();
-		
-			
+
+
 			dlg->mPictureControl.GetClientRect(&rect);
-			CDC *pDC = dlg->mPictureControl.GetDC();
+			CDC* pDC = dlg->mPictureControl.GetDC();
 			SetStretchBltMode(pDC->m_hDC, STRETCH_HALFTONE);
 
-			if (width <= rect.Width() && height <= rect.Height())
-			{
+			if (width <= rect.Width() && height <= rect.Height()) {
 				rect1 = CRect(rect.TopLeft(), CSize(width, height));
 				dlg->m_pImgSrc->StretchBlt(pDC->m_hDC, rect1, SRCCOPY);
 			}
-			else
-			{
+			else {
 				float xScale = (float)rect.Width() / (float)width;
 				float yScale = (float)rect.Height() / (float)height;
 				float ScaleIndex = (xScale <= yScale ? xScale : yScale);
-				rect1 = CRect(rect.TopLeft(), CSize((int)width*ScaleIndex*0.98, (int)height*ScaleIndex*0.98));
+				rect1 = CRect(rect.TopLeft(), CSize((int)width * ScaleIndex * 0.98, (int)height * ScaleIndex * 0.98));
 				dlg->m_pImgSrc->StretchBlt(pDC->m_hDC, rect1, SRCCOPY);
 			}
 			dlg->ReleaseDC(pDC);
 		}
-		if (dlg->m_pImgSrc2 != NULL)
-		{
+		if (dlg->m_pImgSrc2 != NULL) {
 			int height;
 			int width;
 			CRect rect;
@@ -376,27 +345,24 @@ UINT CExperimentImgDlg::Update(void* p)
 
 
 			dlg->mPictureControl2.GetClientRect(&rect);
-			CDC *pDC = dlg->mPictureControl2.GetDC();
+			CDC* pDC = dlg->mPictureControl2.GetDC();
 			SetStretchBltMode(pDC->m_hDC, STRETCH_HALFTONE);
 
-			if (width <= rect.Width() && height <= rect.Height())
-			{
+			if (width <= rect.Width() && height <= rect.Height()) {
 				rect1 = CRect(rect.TopLeft(), CSize(width, height));
 				dlg->m_pImgSrc2->StretchBlt(pDC->m_hDC, rect1, SRCCOPY);
 			}
-			else
-			{
+			else {
 				float xScale = (float)rect.Width() / (float)width;
 				float yScale = (float)rect.Height() / (float)height;
 				float ScaleIndex = (xScale <= yScale ? xScale : yScale);
-				rect1 = CRect(rect.TopLeft(), CSize((int)width*ScaleIndex*0.98, (int)height*ScaleIndex*0.98));
+				rect1 = CRect(rect.TopLeft(), CSize((int)width * ScaleIndex * 0.98, (int)height * ScaleIndex * 0.98));
 				dlg->m_pImgSrc2->StretchBlt(pDC->m_hDC, rect1, SRCCOPY);
 			}
 			dlg->ReleaseDC(pDC);
 		}
 
-		if (dlg->m_pImgResult != NULL)
-		{
+		if (dlg->m_pImgResult != NULL) {
 			int height;
 			int width;
 			CRect rect;
@@ -406,20 +372,18 @@ UINT CExperimentImgDlg::Update(void* p)
 
 
 			dlg->mResult.GetClientRect(&rect);
-			CDC *pDC = dlg->mResult.GetDC();
+			CDC* pDC = dlg->mResult.GetDC();
 			SetStretchBltMode(pDC->m_hDC, STRETCH_HALFTONE);
 
-			if (width <= rect.Width() && height <= rect.Height())
-			{
+			if (width <= rect.Width() && height <= rect.Height()) {
 				rect1 = CRect(rect.TopLeft(), CSize(width, height));
 				dlg->m_pImgResult->StretchBlt(pDC->m_hDC, rect1, SRCCOPY);
 			}
-			else
-			{
+			else {
 				float xScale = (float)rect.Width() / (float)width;
 				float yScale = (float)rect.Height() / (float)height;
 				float ScaleIndex = (xScale <= yScale ? xScale : yScale);
-				rect1 = CRect(rect.TopLeft(), CSize((int)width*ScaleIndex*0.98, (int)height*ScaleIndex*0.98));
+				rect1 = CRect(rect.TopLeft(), CSize((int)width * ScaleIndex * 0.98, (int)height * ScaleIndex * 0.98));
 				dlg->m_pImgResult->StretchBlt(pDC->m_hDC, rect1, SRCCOPY);
 			}
 			dlg->ReleaseDC(pDC);
@@ -428,41 +392,37 @@ UINT CExperimentImgDlg::Update(void* p)
 	return 0;
 }
 
-void CExperimentImgDlg::ThreadDraw(DrawPara *p)
-{
+void CExperimentImgDlg::ThreadDraw(DrawPara* p) {
 	CRect rect;
 	GetClientRect(&rect);
-	CDC     memDC;             // ÓÃÓÚ»º³å»æÍ¼µÄÄÚ´æ»­±Ê  
-	CBitmap memBitmap;         // ÓÃÓÚ»º³å»æÍ¼µÄÄÚ´æ»­²¼
-	memDC.CreateCompatibleDC(p->pDC);  // ´´½¨ÓëÔ­»­±Ê¼æÈİµÄ»­±Ê
-	memBitmap.CreateCompatibleBitmap(p->pDC, p->width, p->height);  // ´´½¨ÓëÔ­Î»Í¼¼æÈİµÄÄÚ´æ»­²¼
-	memDC.SelectObject(&memBitmap);      // ´´½¨»­±ÊÓë»­²¼µÄ¹ØÁª
+	CDC     memDC;             // ç”¨äºç¼“å†²ç»˜å›¾çš„å†…å­˜ç”»ç¬”  
+	CBitmap memBitmap;         // ç”¨äºç¼“å†²ç»˜å›¾çš„å†…å­˜ç”»å¸ƒ
+	memDC.CreateCompatibleDC(p->pDC);  // åˆ›å»ºä¸åŸç”»ç¬”å…¼å®¹çš„ç”»ç¬”
+	memBitmap.CreateCompatibleBitmap(p->pDC, p->width, p->height);  // åˆ›å»ºä¸åŸä½å›¾å…¼å®¹çš„å†…å­˜ç”»å¸ƒ
+	memDC.SelectObject(&memBitmap);      // åˆ›å»ºç”»ç¬”ä¸ç”»å¸ƒçš„å…³è”
 	memDC.FillSolidRect(rect, p->pDC->GetBkColor());
 	p->pDC->SetStretchBltMode(HALFTONE);
-	// ½«pImgSrcµÄÄÚÈİËõ·Å»­µ½ÄÚ´æ»­²¼ÖĞ
+	// å°†pImgSrcçš„å†…å®¹ç¼©æ”¾ç”»åˆ°å†…å­˜ç”»å¸ƒä¸­
 	p->pImgSrc->StretchBlt(memDC.m_hDC, 0, 0, p->width, p->height);
 
-	// ½«ÒÑ»­ºÃµÄ»­²¼¸´ÖÆµ½ÕæÕıµÄ»º³åÇøÖĞ
+	// å°†å·²ç”»å¥½çš„ç”»å¸ƒå¤åˆ¶åˆ°çœŸæ­£çš„ç¼“å†²åŒºä¸­
 	p->pDC->BitBlt(p->oriX, p->oriY, p->width, p->height, &memDC, 0, 0, SRCCOPY);
 	memBitmap.DeleteObject();
 	memDC.DeleteDC();
 }
 
-void CExperimentImgDlg::ImageCopy(CImage* pImgSrc, CImage* pImgDrt)
-{
+void CExperimentImgDlg::ImageCopy(CImage* pImgSrc, CImage* pImgDrt) {
 	int MaxColors = pImgSrc->GetMaxColorTableEntries();
 	RGBQUAD* ColorTab;
 	ColorTab = new RGBQUAD[MaxColors];
 
-	CDC *pDCsrc, *pDCdrc;
-	if (!pImgDrt->IsNull())
-	{
+	CDC* pDCsrc, * pDCdrc;
+	if (!pImgDrt->IsNull()) {
 		pImgDrt->Destroy();
 	}
 	pImgDrt->Create(pImgSrc->GetWidth(), pImgSrc->GetHeight(), pImgSrc->GetBPP(), 0);
 
-	if (pImgSrc->IsIndexed())
-	{
+	if (pImgSrc->IsIndexed()) {
 		pImgSrc->GetColorTable(0, MaxColors, ColorTab);
 		pImgDrt->SetColorTable(0, MaxColors, ColorTab);
 	}
@@ -478,21 +438,18 @@ void CExperimentImgDlg::ImageCopy(CImage* pImgSrc, CImage* pImgDrt)
 
 CString ap, bp;
 
-void CExperimentImgDlg::OnBnClickedButtonOpen()
-{
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼şÍ¨Öª´¦Àí³ÌĞò´úÂë
-	TCHAR szFilter[] = _T("JPEG(*jpg)|*.jpg|*.bmp|*.png|TIFF(*.tif)|*.tif|All Files £¨*.*£©|*.*||");
+void CExperimentImgDlg::OnBnClickedButtonOpen() {
+	// TODO: åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
+	TCHAR szFilter[] = _T("JPEG(*jpg)|*.jpg|*.bmp|*.png|TIFF(*.tif)|*.tif|All Files ï¼ˆ*.*ï¼‰|*.*||");
 	CString filePath("");
-	
+
 	CFileDialog fileOpenDialog(TRUE, NULL, NULL, OFN_HIDEREADONLY, szFilter);
-	if (fileOpenDialog.DoModal() == IDOK)
-	{
+	if (fileOpenDialog.DoModal() == IDOK) {
 		VERIFY(filePath = fileOpenDialog.GetPathName());
 		CString strFilePath(filePath);
-//		mEditInfo.SetWindowTextW(strFilePath);	//ÔÚÎÄ±¾¿òÖĞÏÔÊ¾Í¼ÏñÂ·¾¶
+		//		mEditInfo.SetWindowTextW(strFilePath);	//åœ¨æ–‡æœ¬æ¡†ä¸­æ˜¾ç¤ºå›¾åƒè·¯å¾„
 
-		if (m_pImgSrc != NULL)
-		{
+		if (m_pImgSrc != NULL) {
 			m_pImgSrc->Destroy();
 			delete m_pImgSrc;
 		}
@@ -500,7 +457,7 @@ void CExperimentImgDlg::OnBnClickedButtonOpen()
 		m_pImgSrc->Load(strFilePath);
 		this->Invalidate();
 		ap = filePath;
-		Output(_T("¼ÓÔØÍ¼Æ¬A£º")+filePath);
+		Output(_T("åŠ è½½å›¾ç‰‡Aï¼š") + filePath);
 	}
 }
 
@@ -508,8 +465,7 @@ void CExperimentImgDlg::OnBnClickedButtonOpen()
 double pp;
 double junzhi;
 double fangcha;
-void CExperimentImgDlg::OnBnClickedButtonProcess()
-{
+void CExperimentImgDlg::OnBnClickedButtonProcess() {
 	CComboBox* cmb1 = ((CComboBox*)mtab1.GetDlgItem(IDC_COMBO_FUNCTION));
 	int func1 = cmb1->GetCurSel();
 	// CComboBox* cmb2 = ((CComboBox*)mtab2.GetDlgItem(IDC_COMBO1));
@@ -525,19 +481,17 @@ void CExperimentImgDlg::OnBnClickedButtonProcess()
 	CEdit* edit;
 	CEdit* edit2;
 	CStatic* pic = ((CStatic*)GetDlgItem(IDC_PICTURE));
-	
+
 	CRect IRect;
 	pic->GetClientRect(&IRect);
-	pic->GetDC()->FillSolidRect(IRect.left+1, IRect.top+1, IRect.Width()-2, IRect.Height()-2, RGB(240, 240, 240));
-	switch (tab.GetCurSel())
-	{
+	pic->GetDC()->FillSolidRect(IRect.left + 1, IRect.top + 1, IRect.Width() - 2, IRect.Height() - 2, RGB(240, 240, 240));
+	switch (tab.GetCurSel()) {
 	case 0:
-		switch (func1)
-		{
-		case 0:  //ÑéÖ¤ FERNS
+		switch (func1) {
+		case 0:  //éªŒè¯ FERNS
 			verify_FERNS();
 			break;
-		
+
 		default:
 			break;
 		}
@@ -547,23 +501,21 @@ void CExperimentImgDlg::OnBnClickedButtonProcess()
 		RemappingAndCorrection();
 		break;
 	case 2:
-		switch (func3)
-		{
-		case 0:  //SURFÍ¼ÏñÆ´½Ó
+		switch (func3) {
+		case 0:  //SURFå›¾åƒæ‹¼æ¥
 			stitching();
 			break;
 
-		case 1: 
-			
+		case 1:
+
 			break;
 		default:
 			break;
 		}
 		break;
 	case 3:
-		switch (func4)
-		{
-		case 0:  //XXX·½·¨Ä¿±ê¼ì²â
+		switch (func4) {
+		case 0:  //XXXæ–¹æ³•ç›®æ ‡æ£€æµ‹
 			detecting();
 			break;
 
@@ -573,24 +525,23 @@ void CExperimentImgDlg::OnBnClickedButtonProcess()
 		break;
 
 	case 4:
-		//ÊÓÆµ¼ì²â
+		//è§†é¢‘æ£€æµ‹
 
 
 		break;
 	default:
 		break;
 	}
-	
-	
+
+
 }
 
 
-void CExperimentImgDlg::verify_FERNS()
-{
+void CExperimentImgDlg::verify_FERNS() {
 	startTime = clock();
-	
-	
-	
+
+
+
 }
 
 
@@ -605,29 +556,28 @@ void CExperimentImgDlg::RemappingAndCorrection() {
 	delete m_pImgResult;
 	m_pImgResult = temp;
 
-	CString msg=L"";
-	msg += L"ÌØÕ÷ÌáÈ¡·½·¨Îª ";
+	CString msg = L"";
+	msg += L"ç‰¹å¾æå–æ–¹æ³•ä¸º ";
 	msg += (mtab2.ComboSift.GetCurSel() == 0 ? L"SIFT" : L"SURF");
-	msg += L" µÄ ";
-	msg += (mtab2.ComboMethod.GetCurSel() == 0 ? L"µã¶ÔÓ³Éä" : L"¼¸ºÎ½ÃÕı");
-	msg += L" ²Ù×÷Íê³É \r\nÒÔ ";
+	msg += L" çš„ ";
+	msg += (mtab2.ComboMethod.GetCurSel() == 0 ? L"ç‚¹å¯¹æ˜ å°„" : L"å‡ ä½•çŸ«æ­£");
+	msg += L" æ“ä½œå®Œæˆ \r\nä»¥ ";
 	msg += (mtab2.ComboMatch.GetCurSel() == 0 ? L"BruteForce" : L"Flann");
-	msg += L" Æ¥Åä·½Ê½ \r\nÍ¼Ïñ´óĞ¡Îª ";
-	
+	msg += L" åŒ¹é…æ–¹å¼ \r\nå›¾åƒå¤§å°ä¸º ";
+
 	CString str;
 	mtab2.EditScale.GetWindowTextW(str);
 	double scale = _wtof(str);
 
 	CString tmp;
-	tmp.Format(L"%d * %d \r\nºÄÊ± %d ms", int(scale * m_pImgSrc->GetWidth()),
+	tmp.Format(L"%d * %d \r\nè€—æ—¶ %d ms", int(scale * m_pImgSrc->GetWidth()),
 		int(scale * m_pImgSrc->GetHeight()), int(EndTime - StartTime));
 
 	Output(msg + tmp);
 }
 
 
-void CExperimentImgDlg::stitching()
-{
+void CExperimentImgDlg::stitching() {
 	/*namedWindow("view", WINDOW_AUTOSIZE);
 	HWND hWnd = (HWND)cvGetWindowHandle("view");
 	HWND hParent = ::GetParent(hWnd);
@@ -638,28 +588,28 @@ void CExperimentImgDlg::stitching()
 	name1 = CW2A(ap.GetString());
 	string name2;
 	name2 = CW2A(bp.GetString());
-	if (m_pImgSrc != NULL && m_pImgSrc != NULL)
-	{
-		ImageProcess::stitch(name1, name2, m_pImgResult);
+	if (m_pImgSrc != NULL && m_pImgSrc != NULL) {
+		CImage* temp = new CImage();
+		ImageProcess::stitch(name1, name2, temp);
+		delete m_pImgResult;
+		m_pImgResult = temp;
 
 		clock_t endTime = clock();
 		CString timeStr;
-		timeStr.Format(_T("Í¼ÏñÆ´½ÓºÄÊ±:%dms "), endTime - startTime);
+		timeStr.Format(_T("å›¾åƒæ‹¼æ¥è€—æ—¶:%dms "), endTime - startTime);
 		Output(timeStr);
 	}
 	else
-		AfxMessageBox(_T("È±ÉÙÍ¼Æ¬"));
+		AfxMessageBox(_T("ç¼ºå°‘å›¾ç‰‡"));
 }
 
 
-void CExperimentImgDlg::detecting()
-{
+void CExperimentImgDlg::detecting() {
 	startTime = clock();
 }
 
 
-void CExperimentImgDlg::ORB()
-{
+void CExperimentImgDlg::ORB() {
 	startTime = clock();
 }
 
@@ -668,35 +618,31 @@ void CExperimentImgDlg::ORB()
 
 
 
-LRESULT CExperimentImgDlg::OnVerify_FERNSMsgReceived(WPARAM wParam, LPARAM lParam)
-{
+LRESULT CExperimentImgDlg::OnVerify_FERNSMsgReceived(WPARAM wParam, LPARAM lParam) {
 	static int tempThreadCount = 0;
 	static int tempProcessCount = 0;
-	if ((int)wParam == 1)
-	{
+	if ((int)wParam == 1) {
 
 		tempProcessCount = 0;
 		clock_t endTime = clock();
 		CString timeStr;
-		timeStr.Format(_T("ÑéÖ¤FERNSºÄÊ±:%dms "), endTime - startTime);
+		timeStr.Format(_T("éªŒè¯FERNSè€—æ—¶:%dms "), endTime - startTime);
 		Output(timeStr);
 
 	}
 	return 0;
 }
 
-LRESULT CExperimentImgDlg::OnstitchingMsgReceived(WPARAM wParam, LPARAM lParam)
-{
+LRESULT CExperimentImgDlg::OnstitchingMsgReceived(WPARAM wParam, LPARAM lParam) {
 	static int tempThreadCount = 0;
 	static int tempProcessCount = 0;
-	if ((int)wParam == 1)
-	{
-		// µ±ËùÓĞÏß³Ì¶¼·µ»ØÁËÖµ1´ú±íÈ«²¿½áÊø~ÏÔÊ¾Ê±¼ä
+	if ((int)wParam == 1) {
+		// å½“æ‰€æœ‰çº¿ç¨‹éƒ½è¿”å›äº†å€¼1ä»£è¡¨å…¨éƒ¨ç»“æŸ~æ˜¾ç¤ºæ—¶é—´
 
 		tempProcessCount = 0;
 		clock_t endTime = clock();
 		CString timeStr;
-		timeStr.Format(_T("Í¼ÏñÆ´½ÓºÄÊ±:%dms "), endTime - startTime);
+		timeStr.Format(_T("å›¾åƒæ‹¼æ¥è€—æ—¶:%dms "), endTime - startTime);
 		Output(timeStr);
 
 
@@ -704,18 +650,16 @@ LRESULT CExperimentImgDlg::OnstitchingMsgReceived(WPARAM wParam, LPARAM lParam)
 	return 0;
 }
 
-LRESULT CExperimentImgDlg::OndetectingMsgReceived(WPARAM wParam, LPARAM lParam)
-{
+LRESULT CExperimentImgDlg::OndetectingMsgReceived(WPARAM wParam, LPARAM lParam) {
 	static int tempThreadCount = 0;
 	static int tempProcessCount = 0;
-	if ((int)wParam == 1)
-	{
-		// µ±ËùÓĞÏß³Ì¶¼·µ»ØÁËÖµ1´ú±íÈ«²¿½áÊø~ÏÔÊ¾Ê±¼ä
+	if ((int)wParam == 1) {
+		// å½“æ‰€æœ‰çº¿ç¨‹éƒ½è¿”å›äº†å€¼1ä»£è¡¨å…¨éƒ¨ç»“æŸ~æ˜¾ç¤ºæ—¶é—´
 
 		tempProcessCount = 0;
 		clock_t endTime = clock();
 		CString timeStr;
-		timeStr.Format(_T("ÖĞÖµÂË²¨´¦Àí, ºÄÊ±:%dms "), endTime - startTime);
+		timeStr.Format(_T("ä¸­å€¼æ»¤æ³¢å¤„ç†, è€—æ—¶:%dms "), endTime - startTime);
 		Output(timeStr);
 
 
@@ -731,10 +675,8 @@ LRESULT CExperimentImgDlg::OndetectingMsgReceived(WPARAM wParam, LPARAM lParam)
 
 
 
-void CExperimentImgDlg::OnTcnSelchangeTab(NMHDR *pNMHDR, LRESULT *pResult)
-{
-	switch (tab.GetCurSel())
-	{
+void CExperimentImgDlg::OnTcnSelchangeTab(NMHDR* pNMHDR, LRESULT* pResult) {
+	switch (tab.GetCurSel()) {
 	case 0:
 		mtab1.ShowWindow(SW_SHOW);
 		mtab2.ShowWindow(SW_HIDE);
@@ -779,35 +721,30 @@ void CExperimentImgDlg::OnTcnSelchangeTab(NMHDR *pNMHDR, LRESULT *pResult)
 	default:
 		break;
 	}
-	
+
 	*pResult = 0;
 }
 
-void CExperimentImgDlg::Output(const CString &str)
-{
+void CExperimentImgDlg::Output(const CString& str) {
 	output.SetSel(output.GetWindowTextLengthW(), output.GetWindowTextLengthW(), FALSE);
 	output.ReplaceSel(str + _T("\r\n"));
 }
 
-void CExperimentImgDlg::OnBnClickedButton1()
-{
+void CExperimentImgDlg::OnBnClickedButton1() {
 	output.SetWindowTextW(_T(""));
 }
 
-void CExperimentImgDlg::OnStnClickedPicture2()
-{
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼şÍ¨Öª´¦Àí³ÌĞò´úÂë
+void CExperimentImgDlg::OnStnClickedPicture2() {
+	// TODO: åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 }
 
-char* CExperimentImgDlg::LoadProgSource(const char* cFilename, const char* cPreamble, size_t* szFinalLength)
-{
+char* CExperimentImgDlg::LoadProgSource(const char* cFilename, const char* cPreamble, size_t* szFinalLength) {
 	FILE* pFileStream = NULL;
 	size_t szSourceLength;
 
 	// open the OpenCL source code file  
 	pFileStream = fopen(cFilename, "rb");
-	if (pFileStream == NULL)
-	{
+	if (pFileStream == NULL) {
 		return NULL;
 	}
 
@@ -819,10 +756,9 @@ char* CExperimentImgDlg::LoadProgSource(const char* cFilename, const char* cPrea
 	fseek(pFileStream, 0, SEEK_SET);
 
 	// allocate a buffer for the source code string and read it in  
-	char* cSourceString = (char *)malloc(szSourceLength + szPreambleLength + 1);
+	char* cSourceString = (char*)malloc(szSourceLength + szPreambleLength + 1);
 	memcpy(cSourceString, cPreamble, szPreambleLength);
-	if (fread((cSourceString)+szPreambleLength, szSourceLength, 1, pFileStream) != 1)
-	{
+	if (fread((cSourceString)+szPreambleLength, szSourceLength, 1, pFileStream) != 1) {
 		fclose(pFileStream);
 		free(cSourceString);
 		return 0;
@@ -830,8 +766,7 @@ char* CExperimentImgDlg::LoadProgSource(const char* cFilename, const char* cPrea
 
 	// close the file and return the total length of the combined (preamble + source) string  
 	fclose(pFileStream);
-	if (szFinalLength != 0)
-	{
+	if (szFinalLength != 0) {
 		*szFinalLength = szSourceLength + szPreambleLength;
 	}
 	cSourceString[szSourceLength + szPreambleLength] = '\0';
@@ -839,55 +774,45 @@ char* CExperimentImgDlg::LoadProgSource(const char* cFilename, const char* cPrea
 	return cSourceString;
 }
 
-void CExperimentImgDlg::init_buf(int *buf, int len)
-{
+void CExperimentImgDlg::init_buf(int* buf, int len) {
 	int i;
-	for (int i = 0; i < len; i++)
-	{
+	for (int i = 0; i < len; i++) {
 		buf[i] = i + 1;
 	}
 }
 
-size_t CExperimentImgDlg::RoundUp(int groupSize, int globalSize)
-{
+size_t CExperimentImgDlg::RoundUp(int groupSize, int globalSize) {
 	int r = globalSize % groupSize;
-	if (r == 0)
-	{
+	if (r == 0) {
 		return globalSize;
 	}
-	else
-	{
+	else {
 		return globalSize + groupSize - r;
 	}
 }
 
-void CExperimentImgDlg::OnStnClickedPicture()
-{
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼şÍ¨Öª´¦Àí³ÌĞò´úÂë
+void CExperimentImgDlg::OnStnClickedPicture() {
+	// TODO: åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 }
 
 
-void CExperimentImgDlg::OnStnClickedPicture3()
-{
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼şÍ¨Öª´¦Àí³ÌĞò´úÂë
+void CExperimentImgDlg::OnStnClickedPicture3() {
+	// TODO: åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 }
 
 
-void CExperimentImgDlg::OnBnClickedButton2()
-{
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼şÍ¨Öª´¦Àí³ÌĞò´úÂë
-	TCHAR szFilter[] = _T("JPEG(*jpg)|*.jpg|*.bmp|*.png|TIFF(*.tif)|*.tif|All Files £¨*.*£©|*.*||");
+void CExperimentImgDlg::OnBnClickedButton2() {
+	// TODO: åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
+	TCHAR szFilter[] = _T("JPEG(*jpg)|*.jpg|*.bmp|*.png|TIFF(*.tif)|*.tif|All Files ï¼ˆ*.*ï¼‰|*.*||");
 	CString filePath("");
 
 	CFileDialog fileOpenDialog(TRUE, NULL, NULL, OFN_HIDEREADONLY, szFilter);
-	if (fileOpenDialog.DoModal() == IDOK)
-	{
+	if (fileOpenDialog.DoModal() == IDOK) {
 		VERIFY(filePath = fileOpenDialog.GetPathName());
 		CString strFilePath(filePath);
-		//		mEditInfo.SetWindowTextW(strFilePath);	//ÔÚÎÄ±¾¿òÖĞÏÔÊ¾Í¼ÏñÂ·¾¶
+		//		mEditInfo.SetWindowTextW(strFilePath);	//åœ¨æ–‡æœ¬æ¡†ä¸­æ˜¾ç¤ºå›¾åƒè·¯å¾„
 
-		if (m_pImgSrc2 != NULL)
-		{
+		if (m_pImgSrc2 != NULL) {
 			m_pImgSrc2->Destroy();
 			delete m_pImgSrc2;
 		}
@@ -895,6 +820,6 @@ void CExperimentImgDlg::OnBnClickedButton2()
 		m_pImgSrc2->Load(strFilePath);
 		this->Invalidate();
 		bp = filePath;
-		Output(_T("¼ÓÔØÍ¼Æ¬B£º") + filePath);
+		Output(_T("åŠ è½½å›¾ç‰‡Bï¼š") + filePath);
 	}
 }
