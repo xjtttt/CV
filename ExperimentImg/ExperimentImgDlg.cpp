@@ -11,7 +11,6 @@
 #include <CL/cl.h>
 #include <opencv2/highgui/highgui_c.h>
 #include <time.h>
-#include "afxdialogex.h"
 
 
 #ifdef _DEBUG
@@ -602,6 +601,8 @@ void CExperimentImgDlg::OnBnClickedButtonProcess()
 void CExperimentImgDlg::verify_FERNS()
 {
 	startTime = clock();
+	
+	
 	
 }
 
