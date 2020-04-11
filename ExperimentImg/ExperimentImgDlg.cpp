@@ -512,8 +512,8 @@ void CExperimentImgDlg::OnBnClickedButtonProcess()
 {
 	CComboBox* cmb1 = ((CComboBox*)mtab1.GetDlgItem(IDC_COMBO_FUNCTION));
 	int func1 = cmb1->GetCurSel();
-	CComboBox* cmb2 = ((CComboBox*)mtab2.GetDlgItem(IDC_COMBO1));
-	int func2 = cmb2->GetCurSel();
+	// CComboBox* cmb2 = ((CComboBox*)mtab2.GetDlgItem(IDC_COMBO1));
+	// int func2 = cmb2->GetCurSel();
 	CComboBox* cmb3 = ((CComboBox*)mtab3.GetDlgItem(IDC_COMBO1));
 	int func3 = cmb3->GetCurSel();
 	CComboBox* cmb4 = ((CComboBox*)mtab4.GetDlgItem(IDC_COMBO1));
@@ -544,20 +544,7 @@ void CExperimentImgDlg::OnBnClickedButtonProcess()
 
 		break;
 	case 1:
-		switch (func2)
-		{
-		case 0: //SIFT
-			SIFTmapping();
-			break;
-		
-		case 1: //SURF
-			SURFmapping();
-			break;
-		
-
-		default:
-			break;
-		}
+		RemappingAndCorrection();
 		break;
 	case 2:
 		switch (func3)
@@ -607,15 +594,35 @@ void CExperimentImgDlg::verify_FERNS()
 }
 
 
-void CExperimentImgDlg::SIFTmapping()
-{
-	startTime = clock();
-}
+void CExperimentImgDlg::RemappingAndCorrection() {
+	auto StartTime = GetTickCount64();
 
+	CImage* temp = new CImage();
+	mtab2.Run(m_pImgSrc, m_pImgSrc2, temp);
 
-void CExperimentImgDlg::SURFmapping()
-{
-	startTime = clock();
+	auto EndTime = GetTickCount64();
+
+	delete m_pImgResult;
+	m_pImgResult = temp;
+
+	CString msg=L"";
+	msg += L"特征提取方法为 ";
+	msg += (mtab2.ComboSift.GetCurSel() == 0 ? L"SIFT" : L"SURF");
+	msg += L" 的 ";
+	msg += (mtab2.ComboMethod.GetCurSel() == 0 ? L"点对映射" : L"几何矫正");
+	msg += L" 操作完成 \r\n以 ";
+	msg += (mtab2.ComboMatch.GetCurSel() == 0 ? L"BruteForce" : L"Flann");
+	msg += L" 匹配方式 \r\n图像大小为 ";
+	
+	CString str;
+	mtab2.EditScale.GetWindowTextW(str);
+	double scale = _wtof(str);
+
+	CString tmp;
+	tmp.Format(L"%d * %d \r\n耗时 %d ms", int(scale * m_pImgSrc->GetWidth()),
+		int(scale * m_pImgSrc->GetHeight()), int(EndTime - StartTime));
+
+	Output(msg + tmp);
 }
 
 
@@ -673,46 +680,6 @@ LRESULT CExperimentImgDlg::OnVerify_FERNSMsgReceived(WPARAM wParam, LPARAM lPara
 		CString timeStr;
 		timeStr.Format(_T("验证FERNS耗时:%dms "), endTime - startTime);
 		Output(timeStr);
-
-	}
-	return 0;
-}
-
-LRESULT CExperimentImgDlg::OnSIFTmappingMsgReceived(WPARAM wParam, LPARAM lParam)
-{
-	static int tempThreadCount = 0;
-	static int tempProcessCount = 0;
-	if ((int)wParam == 1)
-	{
-		// 当所有线程都返回了值1代表全部结束~显示时间
-
-		tempProcessCount = 0;
-		clock_t endTime = clock();
-		CString timeStr;
-		timeStr.Format(_T("SIFT点对映射耗时:%dms "), endTime - startTime);
-		Output(timeStr);
-
-
-
-	}
-	return 0;
-}
-
-
-LRESULT CExperimentImgDlg::OnSURFmappingMsgReceived(WPARAM wParam, LPARAM lParam)
-{
-	static int tempThreadCount = 0;
-	static int tempProcessCount = 0;
-	if ((int)wParam == 1)
-	{
-		// 当所有线程都返回了值1代表全部结束~显示时间
-
-		tempProcessCount = 0;
-		clock_t endTime = clock();
-		CString timeStr;
-		timeStr.Format(_T("SURF点对映射耗时:%dms "), endTime - startTime);
-		Output(timeStr);
-
 
 	}
 	return 0;

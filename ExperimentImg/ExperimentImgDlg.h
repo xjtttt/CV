@@ -47,8 +47,6 @@ public:
 	char * LoadProgSource(const char* cFilename, const char* cPreamble, size_t* szFinalLength);
 
 	afx_msg LRESULT OnVerify_FERNSMsgReceived(WPARAM wParam, LPARAM lParam);
-	afx_msg LRESULT OnSIFTmappingMsgReceived(WPARAM wParam, LPARAM lParam);
-	afx_msg LRESULT OnSURFmappingMsgReceived(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnstitchingMsgReceived(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OndetectingMsgReceived(WPARAM wParam, LPARAM lParam);
 
@@ -90,8 +88,7 @@ public:
 	
 	
 	void verify_FERNS();
-	void SIFTmapping();
-	void SURFmapping();
+	void RemappingAndCorrection();// 点对映射和几何校正
 	void stitching();
 	void detecting();
 	void ORB();
@@ -102,5 +99,6 @@ public:
 	afx_msg void OnStnClickedPicture();
 	afx_msg void OnStnClickedPicture3();
 	afx_msg void OnBnClickedButton2();
+	
 	
 };

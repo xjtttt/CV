@@ -21,5 +21,10 @@ protected:
 	virtual BOOL OnInitDialog();
 	DECLARE_MESSAGE_MAP()
 public:
-	CComboBox tab2combo;
+	CComboBox ComboSift;
+	CComboBox ComboMethod;
+	CComboBox ComboMatch;
+	CEdit EditScale;
+
+	void Run(CImage*, CImage*, CImage*);// 实际执行函数
 };
