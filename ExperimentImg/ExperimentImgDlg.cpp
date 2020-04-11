@@ -1,4 +1,3 @@
-
 // ExperimentImgDlg.cpp : 实现文件
 //
 
@@ -10,8 +9,8 @@
 #include <stdlib.h>
 #include <iostream>
 #include <CL/cl.h>
+#include <opencv2/highgui/highgui_c.h>
 #include <time.h>
-#include "afxdialogex.h"
 
 
 #ifdef _DEBUG
@@ -477,6 +476,8 @@ void CExperimentImgDlg::ImageCopy(CImage* pImgSrc, CImage* pImgDrt)
 
 }
 
+CString ap, bp;
+
 void CExperimentImgDlg::OnBnClickedButtonOpen()
 {
 	// TODO: 在此添加控件通知处理程序代码
@@ -498,6 +499,7 @@ void CExperimentImgDlg::OnBnClickedButtonOpen()
 		m_pImgSrc = new CImage;
 		m_pImgSrc->Load(strFilePath);
 		this->Invalidate();
+		ap = filePath;
 		Output(_T("加载图片A：")+filePath);
 	}
 }
@@ -587,6 +589,8 @@ void CExperimentImgDlg::verify_FERNS()
 {
 	startTime = clock();
 	
+	
+	
 }
 
 
@@ -624,7 +628,27 @@ void CExperimentImgDlg::RemappingAndCorrection() {
 
 void CExperimentImgDlg::stitching()
 {
+	/*namedWindow("view", WINDOW_AUTOSIZE);
+	HWND hWnd = (HWND)cvGetWindowHandle("view");
+	HWND hParent = ::GetParent(hWnd);
+	::SetParent(hWnd, GetDlgItem(IDC_PICTURE3)->m_hWnd);
+	::ShowWindow(hParent, SW_HIDE);*/
 	startTime = clock();
+	string name1;
+	name1 = CW2A(ap.GetString());
+	string name2;
+	name2 = CW2A(bp.GetString());
+	if (m_pImgSrc != NULL && m_pImgSrc != NULL)
+	{
+		ImageProcess::stitch(name1, name2, m_pImgResult);
+
+		clock_t endTime = clock();
+		CString timeStr;
+		timeStr.Format(_T("图像拼接耗时:%dms "), endTime - startTime);
+		Output(timeStr);
+	}
+	else
+		AfxMessageBox(_T("缺少图片"));
 }
 
 
@@ -870,6 +894,7 @@ void CExperimentImgDlg::OnBnClickedButton2()
 		m_pImgSrc2 = new CImage;
 		m_pImgSrc2->Load(strFilePath);
 		this->Invalidate();
+		bp = filePath;
 		Output(_T("加载图片B：") + filePath);
 	}
 }

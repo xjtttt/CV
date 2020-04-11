@@ -22,4 +22,5 @@ using namespace std;
 namespace ImageProcess {
 	void MatToCImage(const Mat, CImage*);
 	void CImageToMat(const CImage*, Mat&);
+
 };

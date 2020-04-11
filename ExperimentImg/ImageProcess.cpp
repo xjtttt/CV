@@ -14,17 +14,17 @@ void ImageProcess::MatToCImage(const Mat mat, CImage* cimage) {
 	int nHeight = mat.rows;
 
 
-	//ÖØ½¨cimage
+	//é‡å»ºcimage
 	cimage->Destroy();
 	cimage->Create(nWidth, nHeight, 8 * nChannels);
 
-	//¿½±´Êý¾Ý
+	//æ‹·è´æ•°æ®
 
-	const uchar* pucRow;									//Ö¸ÏòÊý¾ÝÇøµÄÐÐÖ¸Õë
-	uchar* pucImage = (uchar*)cimage->GetBits();		//Ö¸ÏòÊý¾ÝÇøµÄÖ¸Õë
-	int nStep = cimage->GetPitch();					//Ã¿ÐÐµÄ×Ö½ÚÊý,×¢ÒâÕâ¸ö·µ»ØÖµÓÐÕýÓÐ¸º
+	const uchar* pucRow;									//æŒ‡å‘æ•°æ®åŒºçš„è¡ŒæŒ‡é’ˆ
+	uchar* pucImage = (uchar*)cimage->GetBits();		//æŒ‡å‘æ•°æ®åŒºçš„æŒ‡é’ˆ
+	int nStep = cimage->GetPitch();					//æ¯è¡Œçš„å­—èŠ‚æ•°,æ³¨æ„è¿™ä¸ªè¿”å›žå€¼æœ‰æ­£æœ‰è´Ÿ
 
-	if (1 == nChannels)								//¶ÔÓÚµ¥Í¨µÀµÄÍ¼ÏñÐèÒª³õÊ¼»¯µ÷É«°å
+	if (1 == nChannels)								//å¯¹äºŽå•é€šé“çš„å›¾åƒéœ€è¦åˆå§‹åŒ–è°ƒè‰²æ¿
 	{
 		RGBQUAD* rgbquadColorTable;
 		int nMaxColors = 256;
@@ -66,7 +66,7 @@ void ImageProcess::CImageToMat(const CImage* cimage, Mat& mat) {
 	int nWidth = cimage->GetWidth();
 	int nHeight = cimage->GetHeight();
 
-	//ÖØ½¨mat
+	//é‡å»ºmat
 	if (1 == nChannels) {
 		mat.create(nHeight, nWidth, CV_8UC1);
 	}
@@ -74,10 +74,10 @@ void ImageProcess::CImageToMat(const CImage* cimage, Mat& mat) {
 		mat.create(nHeight, nWidth, CV_8UC3);
 	}
 
-	//¿½±´Êý¾Ý
-	uchar* pucRow;									//Ö¸ÏòÊý¾ÝÇøµÄÐÐÖ¸Õë
-	uchar* pucImage = (uchar*)cimage->GetBits();		//Ö¸ÏòÊý¾ÝÇøµÄÖ¸Õë
-	int nStep = cimage->GetPitch();					//Ã¿ÐÐµÄ×Ö½ÚÊý,×¢ÒâÕâ¸ö·µ»ØÖµÓÐÕýÓÐ¸º
+	//æ‹·è´æ•°æ®
+	uchar* pucRow;									//æŒ‡å‘æ•°æ®åŒºçš„è¡ŒæŒ‡é’ˆ
+	uchar* pucImage = (uchar*)cimage->GetBits();		//æŒ‡å‘æ•°æ®åŒºçš„æŒ‡é’ˆ
+	int nStep = cimage->GetPitch();					//æ¯è¡Œçš„å­—èŠ‚æ•°,æ³¨æ„è¿™ä¸ªè¿”å›žå€¼æœ‰æ­£æœ‰è´Ÿ
 
 	for (int nRow = 0; nRow < nHeight; nRow++) {
 		pucRow = (mat.ptr<uchar>(nRow));
