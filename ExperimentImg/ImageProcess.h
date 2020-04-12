@@ -12,10 +12,17 @@
 #include "opencv2/features2d.hpp"
 #include "opencv2/xfeatures2d.hpp"
 #include <opencv2/calib3d.hpp>
+#include <opencv2/dnn.hpp>
 #include<afxwin.h>
 #include<stdlib.h>
 #include<algorithm>
 #include <math.h>
+#include <fstream>
+#include <iostream>
+#include <algorithm>
+#include <cstdlib>
+
+using namespace cv::dnn;
 using namespace cv;
 using namespace std;
 
@@ -31,4 +38,5 @@ namespace ImageProcess {
 	void CImageToMat(const CImage*, Mat&);
 	void stitch(string, string, CImage*);
 	void SIFTstitch(string, string, CImage*);
+	void image_detection(string cfgFile, string weight, string clsNames, string image_path);
 };

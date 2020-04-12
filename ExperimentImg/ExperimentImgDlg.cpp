@@ -11,7 +11,15 @@
 #include <CL/cl.h>
 #include <opencv2/highgui/highgui_c.h>
 #include <time.h>
-
+#include <opencv2/opencv.hpp>
+#include <opencv2/dnn.hpp>
+#include <fstream>
+#include <iostream>
+#include <algorithm>
+#include <cstdlib>
+using namespace std;
+using namespace cv;
+using namespace cv::dnn;
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -631,6 +639,13 @@ void CExperimentImgDlg::stitching() {
 
 void CExperimentImgDlg::detecting() {
 	startTime = clock();
+	float confidenceThreshold = 0.25;//ÖÃÐÅ¶È
+	string pro_dir = "./opencv-targetDetection/"; //yolov2-tinyÄ¿Â¼
+	String cfgFile = pro_dir + "data/models/yolov2-tiny-voc/yolov2-tiny-voc.cfg";
+	String weight = pro_dir + "data/models/yolov2-tiny-voc/yolov2-tiny-voc.weights";
+	string clsNames = pro_dir + "data/models/yolov2-tiny-voc/voc.names";
+	string image_path = pro_dir + "data/images/5.jpg";
+	ImageProcess::image_detection(cfgFile, weight, clsNames, image_path);//Í¼Æ¬²âÊÔ
 }
 
 
