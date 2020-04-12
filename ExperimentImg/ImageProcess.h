@@ -30,4 +30,5 @@ namespace ImageProcess {
 	void MatToCImage(const Mat, CImage*);
 	void CImageToMat(const CImage*, Mat&);
 	void stitch(string, string, CImage*);
+	void SIFTstitch(string, string, CImage*);
 };

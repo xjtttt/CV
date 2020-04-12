@@ -91,6 +91,7 @@ public:
 	void RemappingAndCorrection();// 点对映射和几何校正
 	void stitching();
 	void detecting();
+	void siftstitching(); //sift图像拼接
 	void ORB();
 	afx_msg void OnStnClickedPicture2();
 

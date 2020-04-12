@@ -31,6 +31,7 @@ BOOL tab3::OnInitDialog()
 {
 	CComboBox * cmb_function = ((CComboBox*)GetDlgItem(IDC_COMBO1));
 	cmb_function->InsertString(0, _T("SURF"));
+	cmb_function->InsertString(1, _T("SIFT"));
 	cmb_function->SetCurSel(0);
 	return TRUE;
 }
