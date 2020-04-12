@@ -644,8 +644,14 @@ void CExperimentImgDlg::detecting() {
 	String cfgFile = pro_dir + "data/models/yolov2-tiny-voc/yolov2-tiny-voc.cfg";
 	String weight = pro_dir + "data/models/yolov2-tiny-voc/yolov2-tiny-voc.weights";
 	string clsNames = pro_dir + "data/models/yolov2-tiny-voc/voc.names";
-	string image_path = pro_dir + "data/images/5.jpg";
+	//string image_path = pro_dir + "data/images/5.jpg";
+	string image_path;
+	image_path = CW2A(ap.GetString());
 	ImageProcess::image_detection(cfgFile, weight, clsNames, image_path);//Í¼Æ¬²âÊÔ
+	clock_t endTime = clock();
+	CString timeStr;
+	timeStr.Format(_T("yoloÍ¼Ïñ¼ì²âºÄÊ±:%dms "), endTime - startTime);
+	Output(timeStr);
 }
 
 
