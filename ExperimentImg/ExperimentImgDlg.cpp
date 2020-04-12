@@ -661,9 +661,6 @@ void CExperimentImgDlg::ORB() {
 
 
 
-
-
-
 LRESULT CExperimentImgDlg::OnVerify_FERNSMsgReceived(WPARAM wParam, LPARAM lParam) {
 	static int tempThreadCount = 0;
 	static int tempProcessCount = 0;

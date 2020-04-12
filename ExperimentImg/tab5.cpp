@@ -52,7 +52,7 @@ END_MESSAGE_MAP()
 void tab5::OnBnClickedOk()
 {
 	// 打开视频  需要更换地址
-	cv::VideoCapture capture("C:\\Users\\123\\Desktop\\cat.mp4");
+	cv::VideoCapture capture("../图片视频素材/cat.mp4");
 	// 检查视频是否成功打开
 	if (!capture.isOpened())
 	{
